@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import * as Tone from "tone";
     import { page } from '$app/stores';
+    import { base } from '$app/paths';
 
     import Piano from "$lib/components/Piano.svelte";
     import PianoRoll from "$lib/components/PianoRoll.svelte";
@@ -387,10 +388,10 @@
                     
                     <!-- Navigation Links -->
                     <div class="hidden md:flex items-center gap-8">
-                        <a href="/" class="text-white/90 hover:text-white text-sm font-medium transition-colors">
+                        <a href={`${base}/`} class="text-white/90 hover:text-white text-sm font-medium transition-colors">
                             Home
                         </a>
-                        <a href="/about" class="text-white/70 hover:text-white text-sm font-medium transition-colors">
+                        <a href={`${base}/about`} class="text-white/70 hover:text-white text-sm font-medium transition-colors">
                             About
                         </a>
                         <button
@@ -443,7 +444,7 @@
                             Start Creating
                         </button>
                         <a 
-                            href="/about"
+                            href={`${base}/about`}
                             class="text-white/90 border border-white/20 rounded-full px-8 py-3.5 
                                    text-sm font-medium transition-all duration-300
                                    hover:bg-white/10 hover:border-white/40 hover:text-white"

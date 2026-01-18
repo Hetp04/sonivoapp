@@ -4,6 +4,7 @@
     import IconCode from '~icons/mdi/code-braces';
     import IconBrain from '~icons/mdi/brain';
     import { goto } from '$app/navigation';
+    import { base, assets } from '$app/paths';
 </script>
 
 <svelte:head>
@@ -15,18 +16,18 @@
     <nav class="fixed w-full top-0 bg-zinc-800 border-b border-white/5 z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-between h-16">
-                <a href="/" class="text-2xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                <a href={`${base}/`} class="text-2xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
                     Sonivo
                 </a>
                 <div class="flex items-center gap-8">
-                    <a href="/" class="text-white/70 hover:text-white text-sm font-medium transition-colors">Home</a>
-                    <a href="/about" class="text-white/90 hover:text-white text-sm font-medium transition-colors">About</a>
+                    <a href={`${base}/`} class="text-white/70 hover:text-white text-sm font-medium transition-colors">Home</a>
+                    <a href={`${base}/about`} class="text-white/90 hover:text-white text-sm font-medium transition-colors">About</a>
                     <button
                         class="bg-white text-zinc-900 rounded-full px-6 py-2 
                                text-sm font-medium transition-all duration-300
                                hover:bg-white/90 hover:scale-[1.02]"
                         on:click={() => {
-                            goto('/?start=true', { replaceState: true });
+                            goto(`${base}/?start=true`, { replaceState: true });
                         }}
                     >
                         Start Creating
@@ -71,22 +72,22 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <img 
-                        src="/piano.jpg" 
+                        src={`${assets}/piano.jpg`} 
                         alt="Piano keys" 
                         class="aspect-square object-cover rounded-lg"
                     />
                     <img 
-                        src="/graph.png" 
+                        src={`${assets}/graph.png`} 
                         alt="Music visualization graph" 
                         class="aspect-square object-cover rounded-lg"
                     />
                     <img 
-                        src="/hi.png" 
+                        src={`${assets}/hi.png`} 
                         alt="Interface preview" 
                         class="aspect-square object-cover rounded-lg"
                     />
                     <img 
-                        src="/mm.png" 
+                        src={`${assets}/mm.png`} 
                         alt="Music visualization" 
                         class="aspect-square object-cover rounded-lg"
                     />

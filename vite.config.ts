@@ -10,5 +10,4 @@ export default defineConfig({
             autoInstall: true, // experimental
         }),
     ],
-    base: process.env.NODE_ENV === "production" ? "/sonivoapp/" : "/",
 });
