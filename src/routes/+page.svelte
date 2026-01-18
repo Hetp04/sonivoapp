@@ -43,6 +43,19 @@
 
     let isFirstKeyChosen = false;
 
+    let nextSynthTriggerTime = 0;
+    const getNextSynthTime = () => {
+        const now = Tone.now();
+        const epsilon = 0.001;
+        const t = Math.max(now, nextSynthTriggerTime + epsilon);
+        nextSynthTriggerTime = t;
+        return t;
+    };
+
+    const safeTriggerAttackRelease = (note: string, duration: Tone.Unit.Time) => {
+        synth.triggerAttackRelease(note, duration, getNextSynthTime());
+    };
+
     const playPianoNote = (key: string) => {
         synth.triggerAttack(key);
     };
@@ -227,7 +240,7 @@
         window.addEventListener('keydown', (e) => {
             const note = keyMap[e.key];
             if (note) {
-                synth.triggerAttackRelease(note, '0.1');
+                safeTriggerAttackRelease(note, '0.1');
                 lastPlayedNote = note;
             }
         });
@@ -563,7 +576,7 @@
                             ] as { step, title, desc, note }, i}
                                 <div class="group relative"
                                      on:mouseenter={() => {
-                                         synth.triggerAttackRelease(note, '0.1');
+                                         safeTriggerAttackRelease(note, '0.1');
                                          lastPlayedNote = note;
                                          addHoveredNote(note);
                                      }}>
@@ -611,7 +624,7 @@
                                                   transition-colors duration-300"
                                              on:mouseenter|stopPropagation={() => {
                                                  const blackNotes = ['C#4', 'F4', 'G#4'];
-                                                 synth.triggerAttackRelease(blackNotes[i], '0.1');
+                                                 safeTriggerAttackRelease(blackNotes[i], '0.1');
                                                  lastPlayedNote = blackNotes[i];
                                              }}>
                                             <!-- Black key shine effect -->
